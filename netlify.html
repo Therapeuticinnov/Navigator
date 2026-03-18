@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/report"
+  to = "/.netlify/functions/report"
+  status = 200
+
+[[redirects]]
+  from = "/api/row-attachments"
+  to = "/.netlify/functions/row-attachments"
+  status = 200
+
+[[redirects]]
+  from = "/api/attachment-file"
+  to = "/.netlify/functions/attachment-file"
+  status = 200
