@@ -1,0 +1,13 @@
+{
+  "scales": [
+    { "scalename": "TRL1", "scaleid": 1, "scalecolor": "#D9E4EA" },
+    { "scalename": "TRL2", "scaleid": 2, "scalecolor": "#B2C9D6" },
+    { "scalename": "TRL3", "scaleid": 3, "scalecolor": "#8CAEC1" },
+    { "scalename": "TRL4", "scaleid": 4, "scalecolor": "#6693AC" },
+    { "scalename": "TRL5", "scaleid": 5, "scalecolor": "#407898" },
+    { "scalename": "TRL6", "scaleid": 6, "scalecolor": "#1A5D83" },
+    { "scalename": "TRL7", "scaleid": 7, "scalecolor": "#004B75" },
+    { "scalename": "TRL8", "scaleid": 8, "scalecolor": "#004267" },
+    { "scalename": "TRL9", "scaleid": 9, "scalecolor": "#003858" }
+  ]
+}

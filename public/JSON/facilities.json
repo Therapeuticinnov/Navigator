@@ -1,0 +1,92 @@
+{
+  "facilities": [
+    {
+      "facilityname": "Compounds Australia",
+      "facilityid": "compounds-australia",
+      "trlstartlevel": 1,
+      "trlendlevel": 4,
+      "info": "Compounds Australia is national compound library that allows chemists to deposit small molecules into a central repository for access by life science research teams. Scope of services include compound management logistics, storage, formatting, reformatting, quality control and data handling management",
+      "capabilities": [
+        "Compound library storage / access",
+        "RNAi libraries"
+      ],
+      "therapeutics": [
+        "Small molecule"
+      ],
+      "contacts": [
+        {
+          "contactname": "John Lang",
+          "contactemail": "rebecca.lang@griffith.edu.au"
+        },
+        {
+          "contactname": "Katherine Andrews",
+          "contactemail": "katherine.andrews@griffith.edu.au"
+        }
+      ],
+      "location": "Queensland",
+      "qualityStandards": "null",
+      "website": "https://www.griffith.edu.au/research/institute-biomedicine-glycomics/facilities/compounds-australia",
+      "logo": "https://www.griffith.edu.au/__data/assets/image/0031/356098/ca-logo_298x86.jpg"
+    },
+    {
+      "facilityname": "ATMCF",
+      "trlstartlevel": 2,
+      "trlendlevel": 5
+    },
+    {
+      "facilityname": "NBF Qld",
+      "trlstartlevel": 2,
+      "trlendlevel": 6
+    },
+    {
+      "facilityname": "PeterMacCallum",
+      "trlstartlevel": 2,
+      "trlendlevel": 5
+    },
+    {
+      "facilityname": "Victor Chang",
+      "trlstartlevel": 2,
+      "trlendlevel": 7
+    },
+    {
+      "facilityname": "CIPDD",
+      "trlstartlevel": 2,
+      "trlendlevel": 6
+    },
+    {
+      "facilityname": "ACTD",
+      "trlstartlevel": 4,
+      "trlendlevel": 6
+    },
+    {
+      "facilityname": "CO-ADD",
+      "trlstartlevel": 4,
+      "trlendlevel": 7
+    },
+    {
+      "facilityname": "BASE UQ",
+      "trlstartlevel": 5,
+      "trlendlevel": 8
+    },
+    {
+      "facilityname": "CDCO",
+      "trlstartlevel": 6,
+      "trlendlevel": 7
+    },
+    {
+      "facilityname": "CMT-RPA",
+      "trlstartlevel": 6,
+      "trlendlevel": 7
+    },
+    {
+      "facilityname": "CTTWA",
+      "trlstartlevel": 7,
+      "trlendlevel": 9
+    },
+    {
+      "facilityname": "ABCD",
+      "trlstartlevel": 7,
+      "trlendlevel": 9
+    }
+  ]
+}
