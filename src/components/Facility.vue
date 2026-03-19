@@ -119,14 +119,14 @@ watch(
           <!-- Info -->
           <p
             v-if="facility.info"
-            class="text-sm leading-relaxed text-slate-700"
+            class="text-[11px] md:text-sm leading-relaxed text-slate-700"
           >
             {{ facility.info }}
           </p>
 
           <!-- Capabilities -->
           <div v-if="facility.capabilities?.length">
-            <div class="text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[11px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Capabilities
             </div>
             <div class="text-sm text-slate-700">
