@@ -37,7 +37,7 @@ const suggestions = computed(() => {
 </script>
 
 <template>
-  <div class="w-[50%] pb-4">
+  <div class="w-[75%] pb-4">
     <label class="block text-sm font-medium mb-2">Search</label>
 
     <input

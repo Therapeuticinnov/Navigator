@@ -149,7 +149,14 @@ const onFacilityClick = (facility) => emit("select-facility", facility);
             {{ scale.scalename }}
           </div>
           <div
-            class="absolute top-14 left-1/2 -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded-md p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20"
+            :class="[
+              'absolute top-14 w-96 bg-gray-900 text-white text-xs rounded-md p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20',
+              scale.scaleid === 1
+                ? 'left-0'
+                : scale.scaleid === scaleCount
+                  ? 'right-0'
+                  : 'left-1/2 -translate-x-1/2',
+            ]"
           >
             <div class="font-semibold text-lg mb-1">
               TRL {{ scale.scaleid }} –
