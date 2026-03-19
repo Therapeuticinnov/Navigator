@@ -61,9 +61,9 @@ watch(
     <div class="absolute inset-0 bg-black/40" @click="close"></div>
 
     <!-- Modal wrapper -->
-    <div class="absolute inset-0 flex items-start justify-center p-4">
+    <div class="md:absolute inset-0 flex items-start justify-center p-4">
       <div
-        class="w-full max-w-[40vw] rounded-xl overflow-hidden bg-white shadow-xl relative h-fit"
+        class="w-full md:max-w-[40vw] rounded-xl overflow-hidden bg-white shadow-xl relative h-fit"
       >
         <!-- Top bar -->
         <div

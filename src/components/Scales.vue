@@ -191,7 +191,7 @@ const onFacilityClick = (facility) => emit("select-facility", facility);
               :style="{ height: facilityRowHeight }"
             >
               <div
-                class="absolute inset-y-0 rounded-md text-white flex items-center px-3 pointer-events-auto overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
+                class="absolute inset-y-0 rounded-md text-white text-[10px] md:text-lg flex items-center px-3 pointer-events-auto overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
                 @click="onFacilityClick(facility)"
                 :style="{
                   ...facilityPosStyle(facility),
