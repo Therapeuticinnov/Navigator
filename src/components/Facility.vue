@@ -119,17 +119,17 @@ watch(
           <!-- Info -->
           <p
             v-if="facility.info"
-            class="text-[11px] md:text-sm leading-relaxed text-slate-700"
+            class="text-[10px] md:text-sm leading-relaxed text-slate-700"
           >
             {{ facility.info }}
           </p>
 
           <!-- Capabilities -->
           <div v-if="facility.capabilities?.length">
-            <div class="text-[11px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[10px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Capabilities
             </div>
-            <div class="text-sm text-slate-700">
+            <div class="text-[10px] md:text-sm text-slate-700">
               <span v-for="(cap, i) in facility.capabilities" :key="cap + i">
                 {{ cap
                 }}<span v-if="i < facility.capabilities.length - 1"> | </span>
@@ -139,20 +139,20 @@ watch(
 
           <!-- Therapeutics -->
           <div v-if="facility.therapeutics?.length">
-            <div class="text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[10px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Therapeutics
             </div>
-            <div class="text-sm text-slate-700">
+            <div class="text-[10px] md:text-sm text-slate-700">
               {{ facility.therapeutics.join(", ") }}
             </div>
           </div>
 
           <!-- Contacts -->
           <div v-if="facility.contacts?.length">
-            <div class="text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[10px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Contacts
             </div>
-            <div class="text-sm text-slate-700">
+            <div class="text-[10px] md:text-sm text-slate-700">
               <span
                 v-for="(c, i) in facility.contacts"
                 :key="(c.contactemail || c.contactname) + i"
@@ -174,18 +174,18 @@ watch(
 
           <!-- Location -->
           <div v-if="facility.location">
-            <div class="text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[10px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Location
             </div>
-            <div class="text-sm text-slate-700">{{ facility.location }}</div>
+            <div class="text-[10px] md:text-sm text-slate-700">{{ facility.location }}</div>
           </div>
 
           <!-- Quality standards -->
           <div>
-            <div class="text-sm font-semibold text-[#0B2E4D] mb-1">
+            <div class="text-[10px] md:text-sm font-semibold text-[#0B2E4D] mb-1">
               Quality standards
             </div>
-            <div class="text-sm text-slate-700">
+            <div class="text-[10px] md:text-sm text-slate-700">
               {{ facility.qualityStandards || "Not applicable" }}
             </div>
           </div>
@@ -208,7 +208,7 @@ watch(
               v-if="facility.logo"
               :src="facility.logo"
               alt="Facility logo"
-              class="h-24 object-contain"
+              class="h-14 md:h-24 object-contain"
             />
           </div>
         </div>
