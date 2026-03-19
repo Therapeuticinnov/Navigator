@@ -208,7 +208,7 @@ watch(
               v-if="facility.logo"
               :src="facility.logo"
               alt="Facility logo"
-              class="h-30 object-contain"
+              class="h-24 object-contain"
             />
           </div>
         </div>
