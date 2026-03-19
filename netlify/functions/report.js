@@ -3,28 +3,39 @@ export default async () => {
   const token = process.env.SMARTSHEET_API_TOKEN;
 
   if (!reportId || !token) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Missing env variables" }),
-    };
+    return new Response(
+      JSON.stringify({
+        error: "Missing SMARTSHEET_REPORT_ID or SMARTSHEET_API_TOKEN",
+      }),
+      {
+        status: 500,
+        headers: { "content-type": "application/json" },
+      },
+    );
   }
 
-  const res = await fetch(
-    `https://api.smartsheet.com/2.0/reports/${reportId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  try {
+    const res = await fetch(
+      `https://api.smartsheet.com/2.0/reports/${reportId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    },
-  );
+    );
 
-  const data = await res.text();
+    const text = await res.text();
 
-  return {
-    statusCode: res.status,
-    headers: {
-      "content-type": "application/json",
-    },
-    body: data,
-  };
+    return new Response(text, {
+      status: res.status,
+      headers: {
+        "content-type": res.headers.get("content-type") || "application/json",
+      },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Failed to fetch report" }), {
+      status: 500,
+      headers: { "content-type": "application/json" },
+    });
+  }
 };

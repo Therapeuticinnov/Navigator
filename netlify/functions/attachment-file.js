@@ -1,37 +1,95 @@
-export default async (event) => {
-  const { sheetId, attachmentId } = event.queryStringParameters || {};
+export default async (request) => {
+  const url = new URL(request.url);
+  const sheetId = url.searchParams.get("sheetId");
+  const attachmentId = url.searchParams.get("attachmentId");
   const token = process.env.SMARTSHEET_API_TOKEN;
 
   if (!sheetId || !attachmentId) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Missing params" }),
-    };
+    return new Response(
+      JSON.stringify({ error: "Missing sheetId or attachmentId" }),
+      {
+        status: 400,
+        headers: { "content-type": "application/json" },
+      },
+    );
   }
 
-  // Step 1: get attachment metadata
-  const metaRes = await fetch(
-    `https://api.smartsheet.com/2.0/sheets/${sheetId}/attachments/${attachmentId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  if (!token) {
+    return new Response(
+      JSON.stringify({ error: "Missing SMARTSHEET_API_TOKEN" }),
+      {
+        status: 500,
+        headers: { "content-type": "application/json" },
       },
-    },
-  );
+    );
+  }
 
-  const meta = await metaRes.json();
+  try {
+    // Get Smartsheet attachment metadata
+    const metaRes = await fetch(
+      `https://api.smartsheet.com/2.0/sheets/${sheetId}/attachments/${attachmentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
 
-  // Step 2: fetch actual file
-  const fileRes = await fetch(meta.url);
-  const buffer = await fileRes.arrayBuffer();
+    if (!metaRes.ok) {
+      const text = await metaRes.text();
+      return new Response(text, {
+        status: metaRes.status,
+        headers: {
+          "content-type":
+            metaRes.headers.get("content-type") || "application/json",
+        },
+      });
+    }
 
-  return {
-    statusCode: 200,
-    isBase64Encoded: true,
-    headers: {
-      "content-type": fileRes.headers.get("content-type") || "image/png",
-      "cache-control": "public, max-age=3600",
-    },
-    body: Buffer.from(buffer).toString("base64"),
-  };
+    const meta = await metaRes.json();
+
+    if (!meta.url) {
+      return new Response(
+        JSON.stringify({ error: "Attachment metadata missing url" }),
+        {
+          status: 500,
+          headers: { "content-type": "application/json" },
+        },
+      );
+    }
+
+    // Fetch the actual file WITHOUT Authorization header
+    const fileRes = await fetch(meta.url);
+
+    if (!fileRes.ok) {
+      const text = await fileRes.text();
+      return new Response(text, {
+        status: fileRes.status,
+        headers: {
+          "content-type":
+            fileRes.headers.get("content-type") || "application/octet-stream",
+        },
+      });
+    }
+
+    const contentType =
+      fileRes.headers.get("content-type") || "application/octet-stream";
+    const arrayBuffer = await fileRes.arrayBuffer();
+
+    return new Response(arrayBuffer, {
+      status: 200,
+      headers: {
+        "content-type": contentType,
+        "cache-control": "public, max-age=3600",
+      },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: "Failed to stream attachment" }),
+      {
+        status: 500,
+        headers: { "content-type": "application/json" },
+      },
+    );
+  }
 };
