@@ -65,8 +65,8 @@ const facilityTextColor = (facility) => {
 // Row height: shrink to fit when <=10 facilities, fixed when scrolling
 const facilityCount = computed(() => facilities.value.length || 1);
 const facilityRowHeight = computed(() => {
-  if (shouldScroll.value) return "3rem"; // fixed height when scrolling
-  return `clamp(1.75rem, calc((85vh - 3.5rem) / ${facilityCount.value}), 3rem)`;
+  if (shouldScroll.value) return "2rem"; // fixed height when scrolling
+  return `clamp(1.75rem, calc((85vh - 3.5rem) / ${facilityCount.value}), 2rem)`;
 });
 const trlDescriptions = {
   1: {
@@ -124,41 +124,26 @@ const onFacilityClick = (facility) => emit("select-facility", facility);
 <template>
   <div class="w-[99vw] mt-[2vh] mx-auto">
     <!-- Main container -->
-    <div
-      class="border border-gray-200 rounded-xl overflow-hidden relative"
-      style="height: 50vh"
-    >
+    <div class="border border-gray-200 rounded-xl overflow-hidden relative" style="max-height: 75vh">
       <!-- Column layout (split vertically) -->
-      <div
-        class="h-full grid"
-        :style="{ gridTemplateColumns: `repeat(${scaleCount}, 1fr)` }"
-      >
-        <div
-          v-for="scale in props.scales"
-          :key="scale.scaleid"
-          class="h-full border-r border-gray-300 relative group"
-        >
+      <div class="h-full grid" :style="{ gridTemplateColumns: `repeat(${scaleCount}, 1fr)` }">
+        <div v-for="scale in props.scales" :key="scale.scaleid" class="h-full border-r border-gray-300 relative group">
           <!-- Header inside the column -->
-          <div
-            class="h-14 flex items-center justify-center font-semibold relative z-10 cursor-help"
-            :style="{
-              backgroundColor: scale.scalecolor,
-              color: headerTextColor(scale),
-            }"
-          >
+          <div class="h-14 flex items-center justify-center font-semibold relative z-10 cursor-help" :style="{
+            backgroundColor: scale.scalecolor,
+            color: headerTextColor(scale),
+          }">
             {{ scale.scalename }}
           </div>
-          <div
-            :class="[
-              'absolute top-14 w-96 bg-gray-900 text-white text-xs rounded-md p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20',
-              scale.scaleid === 1
-                ? 'left-0'
-                : scale.scaleid === scaleCount
-                  ? 'right-0'
-                  : 'left-1/2 -translate-x-1/2',
-            ]"
-          >
-            <div class="font-semibold text-lg mb-1">
+          <div :class="[
+            'absolute top-14 w-96 bg-gray-900 text-white text-xs rounded-md p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20',
+            scale.scaleid === 1
+              ? 'left-0'
+              : scale.scaleid === scaleCount
+                ? 'right-0'
+                : 'left-1/2 -translate-x-1/2',
+          ]">
+            <div class="font-semibold text-sm mb-1">
               TRL {{ scale.scaleid }} –
               {{ trlDescriptions[scale.scaleid]?.title }}
             </div>
@@ -175,30 +160,21 @@ const onFacilityClick = (facility) => emit("select-facility", facility);
       <!-- Facilities overlay inside the SAME container -->
       <!-- Facilities overlay: starts BELOW the header row -->
       <div class="absolute left-0 right-0 bottom-0 top-14 pointer-events-none">
-        <div
-          class="pt-4 px-3 h-full pointer-events-auto"
-          :class="shouldScroll ? 'overflow-y-auto' : 'overflow-hidden'"
+        <div class="pt-4 px-3 h-full pointer-events-auto" :class="shouldScroll ? 'overflow-y-auto' : 'overflow-hidden'"
           style="
             overscroll-behavior: contain;
             -webkit-overflow-scrolling: touch;
-          "
-        >
+          ">
           <div class="space-y-2">
-            <div
-              v-for="(facility, i) in props.facilities"
-              :key="facility.facilityname + '-' + i"
-              class="relative"
-              :style="{ height: facilityRowHeight }"
-            >
+            <div v-for="(facility, i) in props.facilities" :key="facility.facilityname + '-' + i" class="relative"
+              :style="{ height: facilityRowHeight }">
               <div
-                class="absolute inset-y-0 rounded-md text-white text-[10px] md:text-lg flex items-center px-3 pointer-events-auto overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
-                @click="onFacilityClick(facility)"
-                :style="{
+                class="absolute inset-y-0 rounded-md text-white text-[10px] md:text-sm flex items-center px-3 pointer-events-auto overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
+                @click="onFacilityClick(facility)" :style="{
                   ...facilityPosStyle(facility),
                   backgroundColor: facilityBgColor(facility),
                   color: facilityTextColor(facility),
-                }"
-              >
+                }">
                 {{ facility.facilityname }}
               </div>
             </div>

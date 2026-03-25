@@ -17,6 +17,9 @@ const query = computed({
 // - facilityname
 // - capabilities[]
 // - therapeutics[]
+// - therapeuticArea[]
+// - capabilityArea[]
+// - info
 const suggestions = computed(() => {
   const set = new Set();
 
@@ -24,11 +27,38 @@ const suggestions = computed(() => {
     if (f?.facilityname) set.add(f.facilityname);
 
     if (Array.isArray(f?.capabilities)) {
-      for (const c of f.capabilities) if (c) set.add(c);
+      for (const c of f.capabilities) {
+        if (c) set.add(c);
+      }
     }
 
     if (Array.isArray(f?.therapeutics)) {
-      for (const t of f.therapeutics) if (t) set.add(t);
+      for (const t of f.therapeutics) {
+        if (t) set.add(t);
+      }
+    }
+
+    if (Array.isArray(f?.therapeuticArea)) {
+      for (const t of f.therapeuticArea) {
+        if (t) set.add(t);
+      }
+    }
+
+    if (Array.isArray(f?.capabilityArea)) {
+      for (const c of f.capabilityArea) {
+        if (c) set.add(c);
+      }
+    }
+
+    if (f?.info) {
+      const infoParts = String(f.info)
+        .split(/[.,;]+/)
+        .map((x) => x.trim())
+        .filter(Boolean);
+
+      for (const part of infoParts) {
+        if (part.length > 8) set.add(part);
+      }
     }
   }
 
@@ -40,20 +70,16 @@ const suggestions = computed(() => {
   <div class="w-[75%] pb-4">
     <label class="block text-sm font-medium mb-2">Search</label>
 
-    <input
-      v-model="query"
-      list="search-suggestions"
-      type="text"
-      placeholder="Search facilities, capabilities, therapeutics…"
-      class="w-full bg-blue-100 rounded-lg px-3 py-2 border"
-    />
+    <input v-model="query" list="search-suggestions" type="text"
+      placeholder="Search facilities, capabilities, therapeutic areas…"
+      class="w-full bg-blue-100 rounded-lg px-3 py-2 border" />
 
     <datalist id="search-suggestions">
       <option v-for="s in suggestions" :key="s" :value="s" />
     </datalist>
 
     <p class="text-xs mt-2 opacity-70">
-      Tip: try “RNAi”, “Small molecule”, or a facility name
+      Tip: try a facility name, capability, therapeutic area, or keyword from the description
     </p>
   </div>
 </template>
