@@ -268,7 +268,13 @@ const stateOptions = computed(() => {
 });
 
 function includesTerm(text, term) {
-  return String(text || "").toLowerCase().includes(term);
+  const t = String(text || "").toLowerCase();
+
+  return (
+    t.includes(term) ||
+    t.includes(term + "ing") ||
+    t.includes(term.replace(/e$/, "") + "ing")
+  );
 }
 
 function scoreFacilityForTerms(facility, terms) {
@@ -387,8 +393,8 @@ const filteredFacilities = computed(() => {
       return true;
     }
 
-    const { score } = scoreFacilityForTerms(f, terms);
-    return score > 0;
+    const { matchedTerms } = scoreFacilityForTerms(f, terms);
+    return matchedTerms === terms.length;
   });
 
   // No search: keep existing TRL + alphabetical sort
