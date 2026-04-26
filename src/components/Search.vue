@@ -79,7 +79,7 @@ const suggestions = computed(() => {
     </datalist>
 
     <p class="text-xs mt-2 opacity-70">
-      Tip: try a facility name, capability, therapeutic area, or keyword from the description
+      Tip: try a facility name, capability, therapeutic area, or keywords from the description
     </p>
   </div>
 </template>
