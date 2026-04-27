@@ -72,7 +72,7 @@ const trlDescriptions = {
   1: {
     title: "Discovery research",
     description:
-      "Fundamental biological or chemical principles relevant to a potential therapeutic have been identified. Research is exploratory and hypothesis‑driven, with no defined therapeutic candidate or clinical pathway.",
+      "Fundamentals biological or chemical principles relevant to a potential therapeutic have been identified. Research is exploratory and hypothesis‑driven, with no defined therapeutic candidate or clinical pathway.",
   },
   2: {
     title: "Target and concept definition",
