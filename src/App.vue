@@ -38,6 +38,9 @@ const COL = {
   THERAPEUTIC_AREA: 3158792419446660,
   CAPABILITY_AREA: 2032892512604036,
   WEBSITE: 433134568247172,
+  QUALITY_SYSTEMS: 7662392046817156,
+  FACILITY_SHORT_NAME: 4284692326289284,
+
 };
 
 const orgFilterButtons = [
@@ -126,11 +129,13 @@ function mapReportToFacilities(reportJson) {
     const therapeuticAreaRaw = cellValueByVirtualId(row, COL.THERAPEUTIC_AREA);
     const capabilityAreaRaw = cellValueByVirtualId(row, COL.CAPABILITY_AREA);
     const website = cellValueByVirtualId(row, COL.WEBSITE);
-
+    const qualitySystems = cellValueByVirtualId(row, COL.QUALITY_SYSTEMS);
+    const facilityShortName = cellValueByVirtualId(row, COL.FACILITY_SHORT_NAME);
     const { trlstartlevel, trlendlevel } = parseTrlRange(trlRaw);
 
     return {
       facilityname: facilityname || "Unknown facility",
+      facilityShortName: facilityShortName || facilityname || "Unknown facility",
       facilityid: slugify(facilityname) || String(row.id),
       trlstartlevel,
       trlendlevel,
@@ -141,7 +146,7 @@ function mapReportToFacilities(reportJson) {
       capabilityArea: splitCommaList(capabilityAreaRaw),
       contacts: buildContacts(contacts, emails),
       location: state || "",
-      qualityStandards: "",
+      qualityStandards: qualitySystems || "",
       website: website || "",
       logo: "",
       organisationType: organisationType || "",
@@ -295,6 +300,7 @@ function scoreFacilityForTerms(facility, terms) {
       : "",
     organisationType: (facility.organisationType || "").toLowerCase(),
     location: (facility.location || "").toLowerCase(),
+    qualityStandards: (facility.qualityStandards || "").toLowerCase(),
   };
 
   let score = 0;
@@ -324,6 +330,10 @@ function scoreFacilityForTerms(facility, terms) {
       termMatched = true;
     }
     if (includesTerm(fields.info, term)) {
+      score += 3;
+      termMatched = true;
+    }
+    if (includesTerm(fields.qualityStandards, term)) {
       score += 3;
       termMatched = true;
     }
