@@ -406,26 +406,8 @@ const filteredFacilities = computed(() => {
     return matchedTerms === terms.length;
   });
 
-  // No search: keep existing TRL + alphabetical sort
-  if (!terms.length) {
-    return sortFacilitiesByTRL(filtered);
-  }
-
-  // Search active: sort by relevance, then TRL, then alphabetical
-  return [...filtered].sort((a, b) => {
-    const aScore = scoreFacilityForTerms(a, terms);
-    const bScore = scoreFacilityForTerms(b, terms);
-
-    if (bScore.matchedTerms !== aScore.matchedTerms) {
-      return bScore.matchedTerms - aScore.matchedTerms;
-    }
-
-    if (bScore.score !== aScore.score) {
-      return bScore.score - aScore.score;
-    }
-
-    return compareByTRLThenName(a, b);
-  });
+  // Always keep facilities ordered by TRL, even when search is active
+  return sortFacilitiesByTRL(filtered);
 });
 
 const facilityCountText = computed(() => {
