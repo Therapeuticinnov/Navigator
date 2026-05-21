@@ -26,12 +26,12 @@ app.get("/api/report", async (req, res) => {
       });
     }
 
-    const r = await fetch(
-      `https://api.smartsheet.com/2.0/reports/${reportId}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
+const r = await fetch(
+  `https://api.smartsheet.com/2.0/reports/${reportId}?pageSize=10000&page=1`,
+  {
+    headers: { Authorization: `Bearer ${token}` },
+  },
+);
 
     const text = await r.text();
     res
