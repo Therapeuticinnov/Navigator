@@ -15,14 +15,17 @@ export default async () => {
   }
 
   try {
-    const res = await fetch(
-      `https://api.smartsheet.com/2.0/reports/${reportId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    const url = new URL(`https://api.smartsheet.com/2.0/reports/${reportId}`);
+
+    // Increase report rows returned from default 100
+    url.searchParams.set("pageSize", "10000");
+    url.searchParams.set("page", "1");
+
+    const res = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    );
+    });
 
     const text = await res.text();
 
