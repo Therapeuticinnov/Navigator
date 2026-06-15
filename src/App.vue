@@ -44,7 +44,7 @@ const COL = {
 
 const orgFilterButtons = [
   { key: "TIA", label: "Therapeutic Innovation Australia" },
-  { key: "NCRIS", label: "NCRIS Enabled" },
+  { key: "NCRIS", label: "NCRIS network" },
   { key: "COMPANY", label: "Company" },
   { key: "MRI", label: "Medical Research Institute" },
   { key: "UNIVERSITY", label: "University" },
@@ -373,7 +373,7 @@ const filteredFacilities = computed(() => {
           return org.includes("therapeutic innovation australia");
         }
         if (filterKey === "NCRIS") {
-          return org.includes("ncris enabled");
+          return org.includes("ncris network");
         }
         if (filterKey === "COMPANY") {
           return org.includes("for profit company");
