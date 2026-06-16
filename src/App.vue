@@ -125,7 +125,7 @@ function mapReportToFacilities(reportJson) {
     const organisationType = cellValueByVirtualId(row, COL.ORG);
     const trlRaw = cellValueByVirtualId(row, COL.TRL);
     const state = cellValueByVirtualId(row, COL.STATE);
-    const therapeuticAreaRaw = cellValueByVirtualId(row, COL.THERAPEUTIC_AREA);
+//    const therapeuticAreaRaw = cellValueByVirtualId(row, COL.THERAPEUTIC_AREA);
     const capabilityAreaRaw = cellValueByVirtualId(row, COL.CAPABILITY_AREA);
     const website = cellValueByVirtualId(row, COL.WEBSITE);
     const qualitySystems = cellValueByVirtualId(row, COL.QUALITY_SYSTEMS);
@@ -140,8 +140,8 @@ function mapReportToFacilities(reportJson) {
       trlendlevel,
       info: info || "",
       capabilities: splitCommaList(capabilitiesRaw),
-      therapeutics: [],
-      therapeuticArea: splitCommaList(therapeuticAreaRaw),
+//      therapeutics: [],
+//      therapeuticArea: splitCommaList(therapeuticAreaRaw),
       capabilityArea: splitCommaList(capabilityAreaRaw),
       contacts: buildContacts(contacts, emails),
       location: state || "",
