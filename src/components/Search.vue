@@ -45,11 +45,13 @@ const suggestions = computed(() => {
       }
     }
 
-    if (Array.isArray(f?.therapeuticArea)) {
-      for (const t of f.therapeuticArea) {
-        if (t) set.add(t);
-      }
-    }
+// COMMENTED OUT - not sure why there is therapeuticArea and also therapeutics?
+//
+//    if (Array.isArray(f?.therapeuticArea)) {
+//      for (const t of f.therapeuticArea) {
+//        if (t) set.add(t);
+//      }
+//    }
 
     if (Array.isArray(f?.capabilityArea)) {
       for (const c of f.capabilityArea) {
