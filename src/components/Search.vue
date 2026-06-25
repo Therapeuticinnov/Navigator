@@ -39,19 +39,19 @@ const suggestions = computed(() => {
       }
     }
 
+// therapeutics is additional keyword but therapeuticArea is relevant modality
+
     if (Array.isArray(f?.therapeutics)) {
       for (const t of f.therapeutics) {
         if (t) set.add(t);
       }
     }
 
-// COMMENTED OUT - not sure why there is therapeuticArea and also therapeutics?
-//
-//    if (Array.isArray(f?.therapeuticArea)) {
-//      for (const t of f.therapeuticArea) {
-//        if (t) set.add(t);
-//      }
-//    }
+    if (Array.isArray(f?.therapeuticArea)) {
+      for (const t of f.therapeuticArea) {
+        if (t) set.add(t);
+      }
+    }
 
     if (Array.isArray(f?.capabilityArea)) {
       for (const c of f.capabilityArea) {
