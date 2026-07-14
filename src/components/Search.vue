@@ -19,12 +19,12 @@ const query = computed({
 // - therapeutics[]
 // - therapeuticArea[]
 // - capabilityArea[]
-// - info
+// (INFO field has been intentionally excluded from suggestions)
 const suggestions = computed(() => {
   const q = query.value.trim().toLowerCase();
 
-  // Only show suggestions after more than 9 characters
-  if (q.length <= 9) {
+  // Only show suggestions after more than 3 characters
+  if (q.length <= 3) {
     return [];
   }
 
@@ -39,8 +39,7 @@ const suggestions = computed(() => {
       }
     }
 
-// therapeutics is additional keyword but therapeuticArea is relevant modality
-
+    // therapeutics is additional keyword but therapeuticArea is relevant modality
     if (Array.isArray(f?.therapeutics)) {
       for (const t of f.therapeutics) {
         if (t) set.add(t);
@@ -59,18 +58,7 @@ const suggestions = computed(() => {
       }
     }
 
-    if (f?.info) {
-      const infoParts = String(f.info)
-        .split(/[.,;]+/)
-        .map((x) => x.trim())
-        .filter(Boolean);
-
-      for (const part of infoParts) {
-        if (part.length > 8) set.add(part);
-      }
-    }
-
-
+    // NOTE: removed the `if (f?.info) { ... }` block so info text no longer populates suggestions
   }
 
   return [...set]
