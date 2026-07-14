@@ -23,8 +23,8 @@ const query = computed({
 const suggestions = computed(() => {
   const q = query.value.trim().toLowerCase();
 
-  // Only show suggestions after more than 3 characters
-  if (q.length <= 3) {
+  // Only show suggestions after more than 9 characters
+  if (q.length <= 9) {
     return [];
   }
 
