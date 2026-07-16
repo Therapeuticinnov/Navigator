@@ -73,7 +73,7 @@ const suggestions = computed(() => {
 
     <div class="relative">
       <input v-model="query" list="search-suggestions" type="text"
-        placeholder="Search facilities, capabilities, therapeutic areas…"
+        placeholder="Enter search terms"
         class="w-full bg-blue-100 rounded-lg px-3 py-2 pr-10 border" />
 
       <button v-if="query" type="button" @click="query = ''"
