@@ -425,6 +425,11 @@ onMounted(loadData);
           <Search v-model="query" :facilities="facilities" />
         </div>
 
+<!-- ADD INSTRUCTIONS HERE -->
+        <div class="text-sm text-gray-600">
+          Select organisation types to filter facilities. TIA facilities are selected by default. Click "All" to display all facilities.
+        </div>
+        
         <div class="flex flex-wrap gap-2 items-center">
           <button v-for="button in orgFilterButtons" :key="button.key" @click="toggleOrgFilter(button.key)" :class="[
             'px-3 py-2 rounded-md text-sm font-medium transition',
